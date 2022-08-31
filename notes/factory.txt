@@ -1,0 +1,2 @@
+php artisan make:factory ClientFactory --model=Client
+Client::factory()->count(20)->create()

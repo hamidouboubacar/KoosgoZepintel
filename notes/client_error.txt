@@ -1,0 +1,7 @@
+Number format to float string
+
+Ajouter required a champ suivi par
+
+Latitude et longitude champ obligatoire
+
+Creer document, suivi par, filtrer par liste fonction commerciale

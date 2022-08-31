@@ -1,0 +1,7 @@
+php artisan make:model ContratContent -m
+
+php artisan make:controller ContratContentController --resource --model=ContratContent
+
+Route::resource("contrat_contents", ContratContentController::class);
+
+

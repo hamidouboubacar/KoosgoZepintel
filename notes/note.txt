@@ -1,0 +1,10 @@
+Contrat
+    - nouveller
+Ergonomie
+    - icone de navigation
+    - plein ecran
+    - notification
+Stabilisation
+    - format autre produit
+    - force de vente
+    - planning des tache et rdv

@@ -1,0 +1,14 @@
+MAIL_HOST=mailhog
+MAIL_PORT=1025
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+
+MAIL_HOST=crm22.netforce-group.com
+MAIL_PORT=587
+MAIL_USERNAME=netforce
+MAIL_PASSWORD=:.jpQqWRD9jib2U
+
+MAIL_HOST=crm22.netforce-group.com
+MAIL_PORT=587
+MAIL_USERNAME=crm22admin
+MAIL_PASSWORD=*NHVWvr}q.),

@@ -1,0 +1,5 @@
+14 févr. 12:47
+- facture d'avoir
+- info bulle sur les icônes d'action
+- ajouter un client dans éditer devis et facture
+- total des packages en fonction des quantitées sélectionnées

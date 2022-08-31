@@ -1,0 +1,24 @@
+php artisan make:model OffreService -m
+
+# renommer le nom d'une table
+Schema::rename($currentTableName, $newTableName);
+
+php artisan migrate
+
+php artisan make:controller OffreServiceController --resource --model=OffreService
+
+Route::resource("offre_service", OffreServiceController::class);
+
+php artisan route:list
+
+
+/*
+ * fonction pour lister
+ */
+public function index() {
+    //On récupère tous les Post
+    $posts = Post::latest()->get();
+
+    // On transmet les Post à la vue
+    return view("posts.index", compact("posts"));
+}

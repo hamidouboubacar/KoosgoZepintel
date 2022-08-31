@@ -1,0 +1,11 @@
+# install fortify
+composer require laravel/fortify
+php artisan vendor:publish --provider="Laravel\Fortify\FortifyServiceProvider"
+php artisan migrate
+
+# install jetstream
+composer require laravel/jetstream
+php artisan jetstream:install livewire
+npm install
+npm run dev
+php artisan migrate

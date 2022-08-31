@@ -1,0 +1,9 @@
+curl -i ^
+--header "Accept: application/json" ^
+--header "Content-Type: application/json" ^
+--header "Bearer: RihSh24wuU87ngqbzm867S9Y6UYwt2F97p5m4AtyVJAk9GvjX6p3AgMsr54RMTTZe8437UWxgT4827AD" ^
+--request POST ^
+-d @paiement.json ^
+localhost:8000/api/paiement
+
+curl -i --header "Accept: application/json" --header "Content-Type: application/json" --header "Bearer: RihSh24wuU87ngqbzm867S9Y6UYwt2F97p5m4AtyVJAk9GvjX6p3AgMsr54RMTTZe8437UWxgT4827AD" --request POST -d @paiement.json localhost:8000/api/paiement

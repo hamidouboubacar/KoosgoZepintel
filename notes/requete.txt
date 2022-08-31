@@ -1,0 +1,103 @@
+/**
+ * Toute la liste des clients par packages
+ */
+SELECT `packages`.`id`, `packages`.`nom`, `documents`.`client_id`, `documents`.`id`, `documents`.`date`, `clients`.`name`
+FROM `document_packages`, `documents`, `packages`, `clients`
+WHERE `document_packages`.`document_id`=`documents`.`id`
+      AND `document_packages`.`package_id`=`packages`.`id`
+      AND `documents`.`client_id`=`clients`.`id`
+      AND `documents`.`type`='Facture'
+      AND YEAR(`documents`.`date`)='2022'
+      AND `packages`.`ref` LIKE 'SER%'
+      AND NOT `packages`.`ref` IN ('SER23', 'SER36', 'ServRout')
+#GROUP BY `packages`.`nom`
+ORDER BY `packages`.`nom`, `documents`.`client_id`
+
+/**
+ * Nombre de clients par packages
+ */
+SELECT `packages`.`id`, `packages`.`nom`, COUNT(DISTINCT `documents`.`client_id`)
+FROM `document_packages`, `documents`, `packages`, `clients`
+WHERE `document_packages`.`document_id`=`documents`.`id`
+      AND `document_packages`.`package_id`=`packages`.`id`
+      AND `documents`.`client_id`=`clients`.`id`
+      AND YEAR(`documents`.`date`)='2022'
+      AND `packages`.`ref` LIKE 'SER%'
+      AND NOT `packages`.`ref` IN ('SER23', 'SER36', 'ServRout')
+GROUP BY `packages`.`nom`
+ORDER BY `packages`.`nom`
+
+/**
+ * Toute la liste des documents par packages
+ */
+SELECT `packages`.`id`, `packages`.`nom`, `documents`.`client_id`, `documents`.`id`, `documents`.`date`, `clients`.`name`
+FROM `document_packages`, `documents`, `packages`, `clients`
+WHERE `document_packages`.`document_id`=`documents`.`id`
+      AND `document_packages`.`package_id`=`packages`.`id`
+      AND `documents`.`client_id`=`clients`.`id`
+      AND YEAR(`documents`.`date`)='2022'
+      AND `packages`.`ref` LIKE 'SER%'
+      AND NOT `packages`.`ref` IN ('SER23', 'SER36', 'ServRout')
+#GROUP BY `packages`.`nom`
+ORDER BY `packages`.`nom`, `documents`.`client_id`
+
+/**
+ * Nombre de documents par packages
+ */
+SELECT `packages`.`id`, `packages`.`nom`, COUNT(DISTINCT `documents`.`id`), SUM(`document_packages`.`prix_unitaire`)
+FROM `document_packages`, `documents`, `packages`, `clients`
+WHERE `document_packages`.`document_id`=`documents`.`id`
+      AND `document_packages`.`package_id`=`packages`.`id`
+      AND `documents`.`client_id`=`clients`.`id`
+      AND YEAR(`documents`.`date`)='2022'
+      AND `packages`.`ref` LIKE 'SER%'
+      AND NOT `packages`.`ref` IN ('SER23', 'SER36', 'ServRout')
+GROUP BY `packages`.`nom`
+ORDER BY `packages`.`nom`
+
+SELECT `packages`.`id`, `packages`.`nom`, COUNT(DISTINCT `documents`.`client_id`) AS total_client, COUNT(`documents`.`id`) as total_facture, SUM(`document_packages`.`prix_unitaire`) AS chiffre_affaire
+FROM `document_packages`, `documents`, `packages`, `clients`
+WHERE `document_packages`.`document_id`=`documents`.`id`
+      AND `document_packages`.`package_id`=`packages`.`id`
+      AND `documents`.`type`='Facture'
+      AND `documents`.`client_id`=`clients`.`id`
+      AND YEAR(`documents`.`date`)='2022'
+      AND `packages`.`ref` LIKE 'SER%'
+      AND NOT `packages`.`ref` IN ('SER23', 'SER36', 'ServRout')
+GROUP BY `packages`.`nom`
+ORDER BY `packages`.`nom`
+
+
+SELECT `packages`.`nom`, MONTH(`documents`.`date`) AS mois, SUM(`document_packages`.`prix_unitaire`) AS total
+FROM `documents`, `document_packages`, `packages`
+WHERE `documents`.`id`=`document_packages`.`document_id`
+      AND `packages`.`id`=`document_packages`.`package_id`
+      AND `packages`.`ref`='SER23'
+      AND `documents`.`type`='Facture'
+      AND YEAR(`documents`.`date`)='2022'
+GROUP BY mois
+ORDER BY mois
+
+SELECT `packages`.`nom`, MONTH(`documents`.`date`) AS month, `documents`.`client_id`, `clients`.`name`, `document_packages`.`prix_unitaire`#, SUM(`packages`.`montant`) AS total
+FROM `documents`, `document_packages`, `packages`, `clients`
+WHERE `documents`.`id`=`document_packages`.`document_id`
+      AND `packages`.`id`=`document_packages`.`package_id`
+      AND `clients`.`id`=`documents`.`client_id`
+      AND `packages`.`ref`='SER23'
+      AND `documents`.`type`='Facture'
+      AND YEAR(`documents`.`date`)='2022'
+#GROUP BY month
+ORDER BY 
+
+/* 
+ * Autre produit
+ */
+SELECT `packages`.`nom`, MONTH(`documents`.`date`) AS mois, SUM(`document_packages`.`prix_unitaire`) AS total
+FROM `documents`.`id`=`document_packages`.`document_id`
+      AND `packages`.`id`=`document_packages`.`package_id`
+      AND `packages`.`ref` NOT LIKE 'SER%'
+      AND `documents`.`type`='Facture'
+      AND YEAR(`documents`.`date`)='2022'
+      AND NOT `packages`.`ref` IN ('SER23', 'SER36', 'ServRout')
+GROUP BY mois
+ORDER BY mois

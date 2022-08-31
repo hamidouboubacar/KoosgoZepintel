@@ -1,0 +1,5 @@
+- signature sans entête affiche direction générale
+- article 2: somme package != 0
+- article 1: affiché package
+- ci après sur une ligne en gras
+- ci après nommé client en gras
